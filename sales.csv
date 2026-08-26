@@ -9,3 +9,5 @@ order_id,product,category,price,quantity,status,store,hour
 2008,Monitor,Electronics,400,1,completed,Store_A,20
 2009,Desk,Furniture,500,1,cancelled,Store_B,16
 2010,iPhone,Electronics,900,2,completed,Store_A,21
+2011,Keyboard,Electronics,,2,completed,Store_A,15
+2006,Headphones,Electronics,120,3,completed,Store_A,19
