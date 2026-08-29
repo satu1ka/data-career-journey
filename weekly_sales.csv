@@ -1,0 +1,15 @@
+order_id,product,category,price,quantity,status,store,hour
+3001,Laptop,Electronics,1200,1,completed,Store_A,10
+3002,Mouse,Electronics,50,2,completed,Store_A,11
+3003,Desk,Furniture,450,1,completed,Store_B,12
+3004,Chair,Furniture,220,2,completed,Store_A,13
+3005,Monitor,Electronics,380,1,cancelled,Store_A,14
+3006,Keyboard,Electronics,,2,completed,Store_A,15
+3007,Lamp,Furniture,80,,completed,Store_B,16
+3008,Headphones,Electronics,150,2,completed,Store_A,17
+3009,Desk,Furniture,500,1,pending,Store_A,18
+3010,Monitor,Electronics,400,2,completed,Store_B,19
+3011,Webcam,Electronics,100,1,completed,Store_A,20
+3011,Webcam,Electronics,100,1,cancelled,Store_A,21
+3012,Chair,Furniture,250,2,completed,Store_A,22
+3013,Laptop,Electronics,1300,1,completed,Store_B,23
