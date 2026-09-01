@@ -36,7 +36,7 @@ def validate_data(df):
         invalid_quantity_condition |
         duplicate_condition
     )
-    # All this pieces can be putted in metrics # 'invalid_price': invalid_price_condition.sum() == 'invalid_price': invalid_price_count,
+
     invalid_price_count = invalid_price_condition.sum()
     invalid_quantity_count = invalid_quantity_condition.sum()
     invalid_hour_count = invalid_hour_condition.sum()
@@ -51,7 +51,7 @@ def validate_data(df):
     quarantine_orders = df[
         invalid_condition
     ].copy()
-    #Same as previous comment
+
     clean_orders_count = clean_orders['order_id'].count()
     quarantine_orders_count = quarantine_orders['order_id'].count()
     raw_records_count = df['order_id'].count()
@@ -75,9 +75,6 @@ def validate_data(df):
     }
 
     return clean_orders, quarantine_orders, dq_metrics
-
-# Part 2 — первая задача
-# Представим, что после Data Quality этапа нам нужно обогатить clean data перед аналитикой
 
 def enrich_orders(table):
     table = table.copy()
@@ -133,8 +130,8 @@ def calculate_revenue(table):
         round(table.groupby('store')['revenue'].mean(), 2)
     )
     total_revenue_by_store = (
-            table.groupby('store')['revenue'].sum().round(2)
-        )
+        table.groupby('store')['revenue'].sum().round(2)
+    )
 
     revenue_metrics = {
         'revenue_by_order_size': revenue_by_order_size,
