@@ -1,0 +1,5 @@
+order_id,product,category,price,quantity,status,store,hour
+3006,Keyboard,Electronics,,2.0,completed,Store_A,15
+3007,Lamp,Furniture,80.0,,completed,Store_B,16
+3011,Webcam,Electronics,100.0,1.0,completed,Store_A,20
+3011,Webcam,Electronics,100.0,1.0,cancelled,Store_A,21
