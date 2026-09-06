@@ -10,3 +10,11 @@ venv/
 
 # VS Code local settings
 .vscode/
+
+# Generated pipeline outputs
+enriched_orders*.csv
+quarantine_orders*.csv
+store_summary*.csv
+category_summary*.csv
+business_summary*.csv
+store_performance*.csv
