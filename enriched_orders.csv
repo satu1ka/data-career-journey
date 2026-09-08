@@ -1,9 +1,0 @@
-order_id,product,category,price,quantity,status,store,hour,revenue,order_size,priority,revenue_per_item,revenue_band
-3001,Laptop,Electronics,1200.0,1.0,completed,Store_A,10,1200.0,large,critical,1200.0,mid
-3002,Mouse,Electronics,50.0,2.0,completed,Store_A,11,100.0,small,normal,50.0,low
-3003,Desk,Furniture,450.0,1.0,completed,Store_B,12,450.0,medium,normal,450.0,low
-3004,Chair,Furniture,220.0,2.0,completed,Store_A,13,440.0,medium,normal,220.0,low
-3008,Headphones,Electronics,150.0,2.0,completed,Store_A,17,300.0,medium,normal,150.0,low
-3010,Monitor,Electronics,400.0,2.0,completed,Store_B,19,800.0,large,high,400.0,mid
-3012,Chair,Furniture,250.0,2.0,completed,Store_A,22,500.0,medium,normal,250.0,mid
-3013,Laptop,Electronics,1300.0,1.0,completed,Store_B,23,1300.0,large,high,1300.0,mid
