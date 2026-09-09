@@ -18,3 +18,6 @@ store_summary*.csv
 category_summary*.csv
 business_summary*.csv
 store_performance*.csv
+
+# Generated pipeline logs
+*.log
