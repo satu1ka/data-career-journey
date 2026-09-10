@@ -1,0 +1,6 @@
+{
+    "process_date": "2026-09-03",
+    "target_status": "completed",
+    "input_file": "daily_sales.csv",
+    "log_file": "day21_pipeline.log"
+}
