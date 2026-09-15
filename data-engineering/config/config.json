@@ -2,5 +2,5 @@
     "process_date": "2026-09-02",
     "target_status": "completed",
     "input_file": "daily_sales.csv",
-    "log_file": "day25_pipeline.log"
+    "log_file": "day26_pipeline.log"
 }
