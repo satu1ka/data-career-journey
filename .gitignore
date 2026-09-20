@@ -8,8 +8,10 @@ venv/
 # Environment variables / secrets
 .env
 
-# VS Code local settings
-.vscode/
+# VS Code project settings
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 
 # Generated pipeline outputs
 enriched_orders*.csv
