@@ -1,0 +1,4 @@
+name,rows,failed_rows
+orders,5000,100
+users,3000,0
+events,2000,50
