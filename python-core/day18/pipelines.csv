@@ -1,0 +1,7 @@
+name,rows,failed_rows
+orders,5000,100
+users,unknown,0
+events,2000,50
+products,3000,bad
+payments,4500,200
+refunds,1000,1500

@@ -1,0 +1,4 @@
+name,rows,failed_rows,valid_rows
+orders,5000,100,4900
+events,2000,50,1950
+payments,4500,200,4300
