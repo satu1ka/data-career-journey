@@ -81,7 +81,7 @@ UPSERT с защитой от перезаписи более свежих да�
 
 2. Data Quality & Pipeline Verification
 
-Day 72 — Weekly Challenge
+[Day 72 — Weekly Challenge](data-engineering/WC%20%2B%20SR/day72_WC/queries.sql)
 
 Самостоятельная работа по проверке корректности обработки событий.
 
@@ -99,7 +99,7 @@ Day 72 — Weekly Challenge
 
 3. Python Data Processing Pipeline
 
-Day 33 — Pipeline
+[Day 33 — Pipeline](data-engineering/day33/)
 
 Учебный мини-пайплайн обработки заказов с использованием Python и Pandas.
 
