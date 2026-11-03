@@ -156,3 +156,31 @@ def test_select_required_columns():
         'created_at'
     ]
     assert 'debug_column' not in result.columns
+
+def test_validate_data_empty_input():
+    table = pd.DataFrame(columns=['order_id', 'price', 'quantity', 'created_at'])
+    clean, quarantine, metrics = pipeline.validate_data(table)
+
+    assert clean.empty
+    assert quarantine.empty
+    assert metrics == {
+        'raw_records': 0,
+        'clean_records': 0,
+        'quarantine_records': 0,
+        'clean_rate': 0.0
+    }
+
+
+def test_validate_data_null_order_id():
+    table = pd.DataFrame({
+        'order_id': [None, 'A2'],
+        'price': [100, 200],
+        'quantity': [1, 1],
+        'created_at': pd.to_datetime(['2026-09-02', '2026-09-02'])
+    })
+    clean, quarantine, metrics = pipeline.validate_data(table)
+
+    assert clean['order_id'].tolist() == ['A2']
+    assert len(quarantine) == 1
+    assert metrics['raw_records'] == 2
+    assert metrics['clean_rate'] == 50.0

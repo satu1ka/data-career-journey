@@ -93,3 +93,16 @@ def test_build_daily_summary():
     assert result['total_revenue'].loc[0] == 600
     assert result['average_revenue'].loc[0] == 200
 
+
+
+def test_enrich_time_data_empty_frame():
+    table = pd.DataFrame({
+        'created_at': pd.Series(dtype='datetime64[ns]')
+    })
+
+    result = transformations.enrich_time_data(table)
+
+    assert result.empty
+    assert result.columns.tolist() == [
+        'created_at', 'order_date', 'order_hour', 'day_of_week', 'time_of_day'
+    ]

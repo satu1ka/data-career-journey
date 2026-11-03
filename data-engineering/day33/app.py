@@ -1,6 +1,7 @@
 from pathlib import Path
 import logging
 import json
+import pandas as pd
 
 from . import config_utils
 from . import pipeline
@@ -40,8 +41,8 @@ def setup_pipeline_logging(log_path):
 )
 
 def main(process_date, target_status, csv_path):
+    logging.info('Pipeline started')
     try:
-        logging.info('Pipeline started')
         table = pipeline.load_data(csv_path)
         logging.info('Data loaded successfully')
         table = pipeline.validate_schema(table)
@@ -50,40 +51,43 @@ def main(process_date, target_status, csv_path):
 
         clean_orders, quarantine_orders, dq_metrics = pipeline.validate_data(table)
 
-        if dq_metrics['quarantine_orders'] > 0:
-            logging.warning(f'There are {dq_metrics['quarantine_orders']} quarantine orders after data validation')
+        if dq_metrics['quarantine_records'] > 0:
+            logging.warning(
+                f"There are {dq_metrics['quarantine_records']} quarantine orders after validation"
+            )
 
         logging.info(
-            f'Data validation completed: '
-            f'Raw records: {dq_metrics['raw_records']} | '
-            f'Clean records: {dq_metrics['clean_records']} | '
-            f'Quarantine records: {dq_metrics['quarantine_orders']} | '
-            f'Clean rate: {dq_metrics['clean_rate']}'
+            f"Data validation completed: "
+            f"Raw records: {dq_metrics['raw_records']} | "
+            f"Clean records: {dq_metrics['clean_records']} | "
+            f"Quarantine records: {dq_metrics['quarantine_records']} | "
+            f"Clean rate: {dq_metrics['clean_rate']}"
         )
 
         table_filtered_by_date = transformations.filter_by_date(clean_orders, process_date)
-
         if table_filtered_by_date.empty:
             logging.warning(f'No clean orders found for process date {process_date}')
-        else:
-            business_orders = transformations.business_filtering(table_filtered_by_date, target_status)
-            if business_orders.empty:
-                logging.warning(f'No {target_status} orders found for process date {process_date}')
-            else:
-                enriched_revenue_orders = transformations.enrich_revenue(business_orders)
-                enriched_time_orders = transformations.enrich_time_data(enriched_revenue_orders)
-                daily_summary = transformations.build_daily_summary(enriched_time_orders)     
-    
-    except ValueError as error:
-        logging.exception(f'We lost something: {error}')
-    except FileNotFoundError as error:
-        logging.exception(f"Can't continue, cause: {error}")
 
-    else:
+        business_orders = transformations.business_filtering(
+            table_filtered_by_date, target_status
+        )
+        if business_orders.empty and not table_filtered_by_date.empty:
+            logging.warning(
+                f'No {target_status} orders found for process date {process_date}'
+            )
+
+        enriched_revenue_orders = transformations.enrich_revenue(business_orders)
+        enriched_time_orders = transformations.enrich_time_data(enriched_revenue_orders)
+        daily_summary = transformations.build_daily_summary(enriched_time_orders)
+
         logging.info('Pipeline completed successfully')
+        return daily_summary
 
+    except (ValueError, FileNotFoundError, pd.errors.EmptyDataError):
+        logging.exception('Pipeline failed')
+        raise
     finally:
-        logging.info('Pipeline execution finished') 
+        logging.info('Pipeline execution finished')
 
 def run():     
     setup_startup_logging()

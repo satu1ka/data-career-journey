@@ -63,6 +63,7 @@ def convert_data_types(table):
     return table
 
 def validate_data(table):
+    invalid_order_id_condition = table['order_id'].isna()
     invalid_price_condition = (
         (table['price'].isna()) |
         (table['price'] <= 0)
@@ -76,6 +77,7 @@ def validate_data(table):
     )
 
     invalid_condition = (
+        invalid_order_id_condition |
         invalid_price_condition |
         invalid_quantity_condition |
         invalid_time_condition
@@ -89,10 +91,13 @@ def validate_data(table):
         invalid_condition
     ].copy()
 
-    raw_records_count = table['order_id'].count()
-    clean_records_count = clean_orders['order_id'].count()
-    quarantine_records_count = quarantine_orders['order_id'].count()
-    clean_rate = (clean_records_count / raw_records_count * 100).round(2)
+    raw_records_count = len(table)
+    clean_records_count = len(clean_orders)
+    quarantine_records_count = len(quarantine_orders)
+    clean_rate = (
+        round(clean_records_count / raw_records_count * 100, 2)
+        if raw_records_count else 0.0
+    )
 
     dq_metrics = {
         'raw_records': raw_records_count,

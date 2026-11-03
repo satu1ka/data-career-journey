@@ -24,6 +24,9 @@ def enrich_time_data(table):
     table['order_hour'] = table['created_at'].dt.hour
     table['day_of_week'] = table['created_at'].dt.day_name()
 
+    # Initialize the column before assigning scalar values: empty frames have no rows.
+    table['time_of_day'] = pd.Series(index=table.index, dtype='object')
+
     table.loc[
         table['order_hour'] < 12,
         'time_of_day'
