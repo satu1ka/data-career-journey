@@ -1,0 +1,8 @@
+[
+    {"name": "orders", "rows": 5000, "failed_rows": 100, "active": true},
+    {"name": "users", "rows": -3000, "failed_rows": 0, "active": true},
+    {"name": "events", "rows": 2000, "failed_rows": 2500, "active": true},
+    {"name": "payments", "rows": 1000, "failed_rows": -50, "active": true},
+    {"name": "logs", "rows": 0, "failed_rows": 0, "active": true},
+    {"name": "inventory", "rows": 500, "failed_rows": 500, "active": false}
+]
