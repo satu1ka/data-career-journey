@@ -1,0 +1,7 @@
+[
+    {"name": "orders", "rows": 5000, "failed_rows": 100, "active": true},
+    "users",
+    null,
+    3000,
+    {"name": "events", "rows": 2000, "failed_rows": 50, "active": true}
+]
